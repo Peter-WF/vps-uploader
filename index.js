@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload')
 app.use(fileUpload());
 
 app.use(express.static('static'));
-app.use('uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 
 app.get('/ping', function(req, res) {
     res.send('pong');

@@ -30,6 +30,11 @@
             width: 50%;
             margin: auto;
         }
+
+        .el-upload-list{
+            width: 50%;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +43,7 @@
             class="upload-container"
             drag
             action="/vps-uploader/upload"
+            :on-preview="handlePreview"
             multiple>
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -49,7 +55,33 @@
 <script>
     new Vue({
         el: '#app',
+        methods: {
+            handlePreview(file) {
+                const link = `${location.origin}/vps-uploader/uploads/${file.name}` ;
+                copy(link)
+                window.open(link)
+            }
+        }
     })
+    function copy(value) {
+        // 构建一个隐藏的 input
+        let transfer = document.createElement('input');
+        document.body.appendChild(transfer);
+        transfer.value = value;  // 这里表示想要复制的内容
+
+        // 先对准焦点，然后执行选中操作
+        transfer.focus();
+        transfer.select();
+
+        // 执行复制操作
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+        }
+
+        // 复制成功，清理现场
+        transfer.blur();
+        document.body.removeChild(transfer);
+    }
 </script>
 </body>
 </html>
