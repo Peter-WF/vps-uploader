@@ -21,7 +21,7 @@ app.post('/upload', function(req, res) {
         return;
     }
 
-    console.log('req.files >>>', req.files); // eslint-disable-line
+    console.log(`[${req.ip}][${req.headers['user-agent']}]req.files >>>`, req.files); // eslint-disable-line
 
     sampleFile = req.files.file;
 
