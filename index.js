@@ -16,8 +16,6 @@ app.post('/upload', function(req, res) {
     let sampleFile;
     let uploadPath;
 
-    debugger
-
     if (!req.files || Object.keys(req.files).length === 0) {
         res.status(400).send('No files were uploaded.');
         return;
@@ -39,7 +37,7 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/', (req, res) => {
-    res.redirect('/uploader.html')
+    res.redirect('/vps-uploader/uploader.html')
 })
 
 
